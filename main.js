@@ -14,6 +14,7 @@ const safeParseJSON = (string) => {
   try {
     const stringAnalysis = JSON.parse(string);
     console.log("The analysis was a success");
+    return stringAnalysis;
   } catch (error) {
     console.log("The analysis was unsuccesful");
     return null;
@@ -28,9 +29,7 @@ const safeParseJSON = (string) => {
     utilizzando il metodo .forEach().
 */
 
-const logElements = (array) => {
-  array.forEach((el) => console.log(el));
-};
+const logElements = (array) => array.forEach((el) => console.log(el));
 
 /*
     Exercise 3
@@ -64,7 +63,7 @@ const divide = (dividendo, divisore) => {
 const processNumbers = (array) => {
   const doubledNumbers = array.map((number, i) => {
     const doubled = number * number;
-    if (typeof number !== "number") {
+    if (typeof number !== "number" || isNaN(number)) {
       throw new Error(`Error, not a number at position ${i}`);
     }
     return doubled;
@@ -72,4 +71,39 @@ const processNumbers = (array) => {
   return doubledNumbers;
 };
 
+/*
+    Exercise 5
 
+    Scrivi una funzione mapWithIndex che prende un 
+    array e restituisce un nuovo array in cui ogni 
+    elemento è una stringa che contiene l'elemento 
+    originale e il suo indice, formattato come 
+    "Elemento [indice]: [elemento]".
+*/
+
+const mapWithIndex = (array) => {
+  const mapArray = array.map((el, i) => {
+    el = `'${el}'`;
+    const element = `Elemento ${i}: ${el}`;
+    return element;
+  });
+  return mapArray;
+};
+
+/*
+    Exercise 6
+
+    Crea una funzione removeShortWords che prende 
+    un array di stringhe e una lunghezza minima. 
+    Dovrebbe restituire un nuovo array contenente 
+    solo le stringhe che sono più lunghe della 
+    lunghezza minima. Usa .filter() e assicurati 
+    che la funzione non tenga conto delle maiuscole 
+    e minuscole.
+*/
+
+const removeShortWords = (array, minLength) => {
+  const noCaps = array.map((word) => word.toLowerCase());
+  const longWords = noCaps.filter((word) => word.length > minLength);
+  return longWords;
+};
