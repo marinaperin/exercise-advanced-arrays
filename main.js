@@ -11,13 +11,13 @@
 */
 
 const safeParseJSON = (string) => {
-    try{
-        const stringAnalysis = JSON.parse(string);
-        console.log('The analysis was a success');
-    }catch(error){
-        console.log('The analysis was unsuccesful');
-        return null;
-    }
+  try {
+    const stringAnalysis = JSON.parse(string);
+    console.log("The analysis was a success");
+  } catch (error) {
+    console.log("The analysis was unsuccesful");
+    return null;
+  }
 };
 
 /*
@@ -28,7 +28,48 @@ const safeParseJSON = (string) => {
     utilizzando il metodo .forEach().
 */
 
-const logElements = (array)=>{
-    array.forEach( el => console.log(el));
+const logElements = (array) => {
+  array.forEach((el) => console.log(el));
 };
+
+/*
+    Exercise 3
+
+    Scrivi una funzione chiamata divide che prende 
+    due parametri, dividendo e divisore. Se il divisore 
+    è 0, genera un nuovo errore con il messaggio 
+    "Impossibile dividere per zero". Altrimenti, 
+    restituisci il risultato della divisione.
+*/
+
+const divide = (dividendo, divisore) => {
+  if (divisore === 0) {
+    throw new Error("Impossibile dividere per zero");
+  } else {
+    return dividendo / divisore;
+  }
+};
+
+/*
+    Exercise 4
+
+    Scrivi una funzione processNumbers che prende 
+    un array, convalida che contenga solo numeri e 
+    restituisce un nuovo array con ogni numero elevato 
+    al quadrato. Se un elemento dell'array non è un 
+    numero, genera un errore indicando a quale indice 
+    si trova il valore non numerico.
+*/
+
+const processNumbers = (array) => {
+  const doubledNumbers = array.map((number, i) => {
+    const doubled = number * number;
+    if (typeof number !== "number") {
+      throw new Error(`Error, not a number at position ${i}`);
+    }
+    return doubled;
+  });
+  return doubledNumbers;
+};
+
 
